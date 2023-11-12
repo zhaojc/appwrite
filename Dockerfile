@@ -29,12 +29,12 @@ ENV VITE_APPWRITE_GROWTH_ENDPOINT=$VITE_APPWRITE_GROWTH_ENDPOINT
 RUN npm ci
 RUN npm run build
 
-FROM appwrite/base:0.4.3 as final
+FROM appwrite/base:0.6.0 as final
 
 LABEL maintainer="team@appwrite.io"
 
 ARG VERSION=dev
-ARG DEBUG=false
+ARG DEBUG=true
 ENV DEBUG=$DEBUG
 
 ENV _APP_VERSION=$VERSION \
@@ -110,8 +110,16 @@ RUN chmod +x /usr/local/bin/hamster && \
 RUN mkdir -p /etc/letsencrypt/live/ && chmod -Rf 755 /etc/letsencrypt/live/
 
 # Enable Extensions
-RUN if [ "$DEBUG" == "true" ]; then printf "zend_extension=yasd \nyasd.debug_mode=remote \nyasd.init_file=/usr/src/code/dev/yasd_init.php \nyasd.remote_port=9005 \nyasd.log_level=-1" >> /usr/local/etc/php/conf.d/yasd.ini; fi
-
+# RUN if [ "$DEBUG" == "true" ]; then printf "zend_extension=yasd \nyasd.debug_mode=remote \nyasd.init_file=/usr/src/code/dev/yasd_init.php \nyasd.remote_port=9005 \nyasd.log_level=0" >> /usr/local/etc/php/conf.d/yasd.ini; fi
+RUN if [ "$DEBUG" == "true" ]; then \
+    echo zend_extension=xdebug.so >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo xdebug.mode=develop,debug  >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo xdebug.enable=1  >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo xdebug.start_with_request=yßes  >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo xdebug.discover_client_host=0  >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo xdebug.client_host=host.docker.internal  >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo xdebug.client_port=9005  >> /usr/local/etc/php/conf.d/xdebug.ini; \
+    fi
 RUN if [ "$DEBUG" == "true" ]; then echo "opcache.enable=0" >> /usr/local/etc/php/conf.d/appwrite.ini; fi
 RUN echo "opcache.preload_user=www-data" >> /usr/local/etc/php/conf.d/appwrite.ini
 RUN echo "opcache.preload=/usr/src/code/app/preload.php" >> /usr/local/etc/php/conf.d/appwrite.ini

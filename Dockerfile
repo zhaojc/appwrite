@@ -115,7 +115,7 @@ RUN if [ "$DEBUG" == "true" ]; then \
     echo zend_extension=xdebug.so >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo xdebug.mode=develop,debug  >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo xdebug.enable=1  >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo xdebug.start_with_request=yßes  >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo xdebug.start_with_request=yes  >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo xdebug.discover_client_host=0  >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo xdebug.client_host=host.docker.internal  >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo xdebug.client_port=9005  >> /usr/local/etc/php/conf.d/xdebug.ini; \

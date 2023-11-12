@@ -32,7 +32,3 @@ https://github.com/appwrite/appwrite/blob/main/CONTRIBUTING.md
 docker run --rm --interactive --tty \
   --volume $PWD:/app \
   composer update --ignore-platform-reqs --optimize-autoloader --no-plugins --no-scripts --prefer-dist
-
-
-
-

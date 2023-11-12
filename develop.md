@@ -25,6 +25,14 @@ PHP_IDE_CONFIG=serverName=project-server名字任意但是需要和phpstorm的�
 phpstorm如果选择第一行代码停止,可能会导致docker服务启动不了原因未知
 d.如果还是不能调试请把docker的volumes删除掉重头来做
 
+有用的文档
+https://github.com/appwrite/appwrite/blob/main/CONTRIBUTING.md
+
+
+docker run --rm --interactive --tty \
+  --volume $PWD:/app \
+  composer update --ignore-platform-reqs --optimize-autoloader --no-plugins --no-scripts --prefer-dist
+
 
 
 

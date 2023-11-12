@@ -36,6 +36,3 @@ docker run --rm --interactive --tty \
 
 
 
-
-
-

@@ -22,7 +22,9 @@ c.如果你使用phpstorm
 PHP_IDE_CONFIG=serverName=project-server名字任意但是需要和phpstorm的服务器配置一致
 然后把PHP_IDE_CONFIG加入到docker-compose.yml各个server的环境变量中
 ![img.png](img.png)
+phpstorm如果选择第一行代码停止,可能会导致docker服务启动不了原因未知
 d.如果还是不能调试请把docker的volumes删除掉重头来做
+
 
 
 

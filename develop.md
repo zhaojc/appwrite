@@ -25,6 +25,10 @@ PHP_IDE_CONFIG=serverName=project-server名字任意但是需要和phpstorm的�
 phpstorm如果选择第一行代码停止,可能会导致docker服务启动不了原因未知
 d.如果还是不能调试请把docker的volumes删除掉重头来做
 
+docker compose build&&docker compose up -d
+docker ps -aq | xargs docker stop | xargs docker rm
+docker volume ls -qf dangling=true | xargs  docker volume rm
+
 有用的文档
 https://github.com/appwrite/appwrite/blob/main/CONTRIBUTING.md
 
@@ -45,3 +49,9 @@ git config --global --unset https.proxy
 查看代理
 git config --global --get http.proxy
 git config --global --get https.proxy
+
+
+
+docker compose build 
+
+docker compose u -d

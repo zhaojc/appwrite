@@ -24,6 +24,7 @@ PHP_IDE_CONFIG=serverName=project-server名字任意但是需要和phpstorm的�
 ![img.png](img.png)
 phpstorm如果选择第一行代码停止,可能会导致docker服务启动不了原因未知
 d.如果还是不能调试请把docker的volumes删除掉重头来做
+由于appwrite有多个docer容器,多容器同时启动(15个)对于phpstorm来说,貌似并发处理不太好,listen的过程很容易导致dockr容器断点中断,且不会自动恢复,影响调试,所以还是用visual code吧
 
 docker compose build&&docker compose up -d
 docker ps -aq | xargs docker stop | xargs docker rm
